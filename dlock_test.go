@@ -11,9 +11,8 @@ import (
 )
 
 var redisOpts = &redis.Options{
-	Network: "tcp",
-	Addr:    "127.0.0.1:6379",
-	DB:      9,
+	Addr: "127.0.0.1:6379",
+	DB:   9,
 }
 
 func TestObtain(t *testing.T) {
@@ -59,7 +58,7 @@ func TestConcurrentObtain(t *testing.T) {
 
 	defer closeConn(t, redisConn)
 	wg := sync.WaitGroup{}
-	for i := 0; i < 3; i++ {
+	for i := 0; i < 100; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
